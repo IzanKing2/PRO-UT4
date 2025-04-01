@@ -20,13 +20,19 @@ public class Habitacion {
     private EstadoHabitacion estadoHabitacion;  // Estado de la habitación (disponible, reservada, ocupada)
     private double precioHabitacion;            // Precio por noche(depende del tipo de habitación)
     private String descripcion;                 // Descripción de la habitación(opcional)
-    private int[][] habitaciones = {            // Numero de habitaciones
-        {101, 102, 103, 104, 105},
-        {201, 202, 203, 204, 205},
-        {301, 302, 303, 304, 305},
-    };
 
     // Constructores
-    public Habitacion() {
+    public Habitacion(int numeroHabitacion, TipoHabitacion tipoHabitacion, double precioHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
+        this.tipoHabitacion = tipoHabitacion;
+        this.estadoHabitacion = EstadoHabitacion.DISPONIBLE;
+        this.precioHabitacion = precioHabitacion;
+    }
+
+    public Habitacion(int numeroHabitacion, TipoHabitacion tipoHabitacion, String descripcion) {
+        this.numeroHabitacion = numeroHabitacion;
+        this.tipoHabitacion = tipoHabitacion;
+        this.estadoHabitacion = EstadoHabitacion.DISPONIBLE;
+        this.descripcion = descripcion;
     }
 }

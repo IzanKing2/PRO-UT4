@@ -6,7 +6,7 @@ public class Reserva {
 
     // Atributos
     private int idReserva = 0; // ID de la reserva (se genera automáticamente)
-    private int numeroHabitacion;
+    private Habitacion habitacion;
     private Cliente cliente;            // Cliente que realiza la reserva
     private LocalDateTime fechaInicioReserva;   
     private LocalDateTime fechaFinReserva; // Máximo de 3 meses de reserva
@@ -15,9 +15,9 @@ public class Reserva {
     private double precioTotal;         // Precio total de la reserva (depende del tipo de habitación y número de noches)
 
 
-    public Reserva(int numeroHabitacion, Cliente cliente, LocalDateTime fechaCheckIn, LocalDateTime fechaCheckOut) {
+    public Reserva(Habitacion habitacion, Cliente cliente, LocalDateTime fechaCheckIn, LocalDateTime fechaCheckOut) {
         idReserva++;
-        this.numeroHabitacion = numeroHabitacion;
+        this.habitacion = habitacion;
         this.cliente = cliente;
         this.fechaCkeckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;

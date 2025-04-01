@@ -12,12 +12,9 @@ import model.Cliente;
 
 
 public class ReservaController {
-
     // Método para agregar una reserva al historial
     public void agregarReserva(int numeroHabitacion, Cliente cliente, LocalDateTime fechaCheckIn, LocalDateTime fechaCheckOut) {
-
-
-        Reserva reserva = new Reserva(numeroHabitacion, cliente, fechaCheckIn, fechaCheckOut); // Instancia de la clase Reserva
+        Reserva reserva = new Reserva(habitacion, cliente, fechaCheckIn, fechaCheckOut); // Instancia de la clase Reserva
 
         String DNI = reserva.getCliente().getDNI(); // Obtener el DNI del cliente
         int reservasActivas = reserva.getCliente().getReservasActivas(); // Obtener el número de reservas activas del cliente
