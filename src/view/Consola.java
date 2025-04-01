@@ -16,8 +16,8 @@ public class Consola {
         for (Habitacion habitacion : listaHabitaciones) { // Recorremos la lista de habitaciones
             imprimir(
                 "Habitación ID: " + habitacion.getNumeroHabitacion() +
-                " | Tipo: " + habitacion.getTipo() +
-                " | Estado: " + habitacion.getEstado() 
+                " | Tipo: " + habitacion.getTipoHabitacion() +
+                " | Estado: " + habitacion.getEstadoHabitacion() 
             );
         }
     }
