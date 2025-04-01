@@ -1,7 +1,7 @@
 package controller;
 
 public class ReservaController {
-                                            /*
+    /*
      *     // Método para agregar una reserva al historial
     public void agregarReserva(String idReserva) {
         if (reservasActivas >= 3) {
@@ -35,5 +35,5 @@ public class ReservaController {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
-                                                             */
+    */
 }
