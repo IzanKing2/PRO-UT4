@@ -1,6 +1,7 @@
 import controller.ClienteController;
 import model.Cliente;
 import model.Habitacion;
+import view.Consola;
 import controller.ReservaController;
 import java.time.LocalDateTime;
 
@@ -41,8 +42,11 @@ public class App {
         Cliente cliente5 = new Cliente("23456789C", "Ana Sánchez Martínez");
 
         // Crear una reserva para el cliente
-        reserva.agregarReserva(101, clente1, LocalDateTime.now(), LocalDateTime.now().plusDays(3));
-        reserva.agregarReserva(104, clente1, LocalDateTime.now(), LocalDateTime.now().plusDays(10));
+        
+        // Listar habitaciones y su esado
+
+        Consola.imprimir(null);
+
 
     }
 }

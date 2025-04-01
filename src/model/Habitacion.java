@@ -35,4 +35,20 @@ public class Habitacion {
         this.estadoHabitacion = EstadoHabitacion.DISPONIBLE;
         this.descripcion = descripcion;
     }
+
+    // Getters y Setters
+    public int getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+    
+    public TipoHabitacion getTipo() {
+        return tipoHabitacion;
+    }
+
+    public EstadoHabitacion getEstado() {
+        return estadoHabitacion;
+    }
+
+
+
 }

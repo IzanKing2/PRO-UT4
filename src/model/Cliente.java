@@ -17,15 +17,15 @@ public class Cliente {
 
     // Getters y Setters
     public String getDNI() {
-        return DNI;
+        return this.DNI;
     }
 
     public String getNombreCompleto() {
-        return nombreCompleto;
+        return this.nombreCompleto;
     }
 
     public int getReservasActivas() {
-        return reservasActivas;
+        return this.reservasActivas;
     }
 
     public void setReservasActivas(int reservasActivas) {
@@ -33,6 +33,6 @@ public class Cliente {
     }
 
     public final String getHistorialFile() {
-        return HISTORIAL_FILE;
+        return this.HISTORIAL_FILE;
     }
 }

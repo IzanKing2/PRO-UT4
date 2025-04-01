@@ -1,14 +1,13 @@
 package controller;
 
 import java.io.File;
-import model.Cliente;
+import java.util.ArrayList;
 
-// Excepción personalizada para errores de validación de DNI
-class DNIException extends Exception {
-    public DNIException(String mensaje) {
-        super(mensaje);
-    }
-}
+import model.Cliente;
+import model.Habitacion;
 
 public class ClienteController {
+
+    
+
 }
