@@ -27,6 +27,10 @@ public class Reserva {
     }
 
     // Getters
+    public int getIdReserva() {
+        return this.idReserva;
+    }
+
     public Habitacion getHabitacion() {
         return this.habitacion;
     }

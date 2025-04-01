@@ -25,30 +25,37 @@ public class Habitacion {
     public Habitacion(int numeroHabitacion, TipoHabitacion tipoHabitacion, double precioHabitacion) {
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
+        this.precioHabitacion = precioHabitacion;
         this.estadoHabitacion = EstadoHabitacion.DISPONIBLE;
         this.precioHabitacion = precioHabitacion;
     }
 
-    public Habitacion(int numeroHabitacion, TipoHabitacion tipoHabitacion, String descripcion) {
+    public Habitacion(int numeroHabitacion, TipoHabitacion tipoHabitacion, double precioHabitacion, String descripcion) {
         this.numeroHabitacion = numeroHabitacion;
         this.tipoHabitacion = tipoHabitacion;
+        this.precioHabitacion = precioHabitacion;
         this.estadoHabitacion = EstadoHabitacion.DISPONIBLE;
         this.descripcion = descripcion;
     }
 
-    // Getters y Setters
+    // Getters
     public int getNumeroHabitacion() {
-        return numeroHabitacion;
-    }
-    
-    public TipoHabitacion getTipo() {
-        return tipoHabitacion;
+        return this.numeroHabitacion;
     }
 
-    public EstadoHabitacion getEstado() {
-        return estadoHabitacion;
+    public TipoHabitacion getTipoHabitacion() {
+        return this.tipoHabitacion;
     }
 
+    public EstadoHabitacion getEstadoHabitacion() {
+        return this.estadoHabitacion;
+    }
 
+    public double getPrecioHabitacion() {
+        return this.precioHabitacion;
+    }
 
+    public String getDescripcion() {
+        return this.descripcion;
+    }
 }
