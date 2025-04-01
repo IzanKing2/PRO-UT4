@@ -1,10 +1,11 @@
 package model;
 
 public class Cliente {
+    private static final String HISTORIAL_FILE = "historial_reservas.txt";
+
     // Atributos
     private String DNI;
     private String nombreCompleto;
-    // Historial de reservad (ver como implementar)
     private int reservasActivas; // Máximo 3 reservas activas
 
     // Constructor
