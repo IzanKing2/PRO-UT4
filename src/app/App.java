@@ -1,3 +1,5 @@
+package app;
+
 import controller.ClienteController;
 import model.Cliente;
 import model.Habitacion;
