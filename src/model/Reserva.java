@@ -19,18 +19,39 @@ public class Reserva {
         idReserva++;
         this.habitacion = habitacion;
         this.cliente = cliente;
+        this.fechaInicioReserva = LocalDateTime.now(); // Fecha y hora de la reserva
+        this.fechaFinReserva = fechaInicioReserva.plusMonths(3); // Máximo de 3 meses de reserva
         this.fechaCkeckIn = fechaCheckIn;
         this.fechaCheckOut = fechaCheckOut;
+        this.precioTotal = 0; // Inicialmente 0, se calculará al finalizar la reserva
     }
 
-    // Getters y Setters
+    // Getters
+    public Habitacion getHabitacion() {
+        return this.habitacion;
+    }
 
     public Cliente getCliente() {
-        return cliente;
+        return this.cliente;
     }
 
-    public int getIdReserva() {
-        return idReserva;
+    public LocalDateTime getFechaInicioReserva() {
+        return this.fechaInicioReserva;
     }
 
+    public LocalDateTime getFechaFinReserva() {
+        return this.fechaFinReserva;
+    }
+
+    public LocalDateTime getFechaCkeckIn() {
+        return this.fechaCkeckIn;
+    }
+
+    public LocalDateTime getFechaCheckOut() {
+        return this.fechaCheckOut;
+    }
+
+    public double getPrecioTotal() {
+        return this.precioTotal;
+    }
 }
