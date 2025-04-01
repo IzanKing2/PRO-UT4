@@ -1,13 +1,17 @@
+package app;
+
+import java.time.LocalDateTime;
+
 import controller.ClienteController;
 import model.Cliente;
 import model.Habitacion;
 import controller.ReservaController;
-import java.time.LocalDateTime;
+import exceptions.ReservaNoDisponibleException;
 
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ReservaNoDisponibleException {
         // Instancias de los controladores
         ClienteController cliente = new ClienteController();
         ReservaController reserva = new ReservaController();
@@ -40,9 +44,15 @@ public class App {
         Cliente cliente4 = new Cliente("42270855M", "Saul Espino Santana");
         Cliente cliente5 = new Cliente("23456789C", "Ana Sánchez Martínez");
 
-        // Crear una reserva para el cliente
-        reserva.agregarReserva(101, clente1, LocalDateTime.now(), LocalDateTime.now().plusDays(3));
-        reserva.agregarReserva(104, clente1, LocalDateTime.now(), LocalDateTime.now().plusDays(10));
+        // Reservas
+        try {
+            reserva.crearReserva(habitacion11, clente1, LocalDateTime.now(), LocalDateTime.now().plusDays(2));
+            reserva.crearReserva(habitacion12, clente2, LocalDateTime.now(), LocalDateTime.now().plusDays(3));
+            reserva.crearReserva(habitacion13, cliente3, LocalDateTime.now(), LocalDateTime.now().plusDays(4));
+            reserva.crearReserva(habitacion14, cliente4, LocalDateTime.now(), LocalDateTime.now().plusDays(5));
+        } catch (ReservaNoDisponibleException e) {
+            System.out.println(e.getMessage()); // Manejo de la excepción si el cliente ya tiene 3 reservas activas
+        }
 
     }
 }
