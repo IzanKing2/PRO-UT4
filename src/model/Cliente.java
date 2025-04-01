@@ -1,17 +1,38 @@
 package model;
 
 public class Cliente {
-    private static final String HISTORIAL_FILE = "historial_reservas.txt";
-
+    
     // Atributos
     private String DNI;
     private String nombreCompleto;
     private int reservasActivas; // Máximo 3 reservas activas
+    private final String HISTORIAL_FILE = "historial_reservas.txt";
 
     // Constructor
     public Cliente(String DNI, String nombreCompleto) {
         this.DNI = DNI;
         this.nombreCompleto = nombreCompleto;
         this.reservasActivas = 0; // Inicialmente no tiene reservas activas
+    }
+
+    // Getters y Setters
+    public String getDNI() {
+        return DNI;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public int getReservasActivas() {
+        return reservasActivas;
+    }
+
+    public void setReservasActivas(int reservasActivas) {
+        this.reservasActivas += reservasActivas;
+    }
+
+    public final String getHistorialFile() {
+        return HISTORIAL_FILE;
     }
 }
