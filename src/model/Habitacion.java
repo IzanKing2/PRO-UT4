@@ -58,4 +58,9 @@ public class Habitacion {
     public String getDescripcion() {
         return this.descripcion;
     }
+
+    // Setters
+    public void setEstadoHabitacion(EstadoHabitacion estadoHabitacion) {
+        this.estadoHabitacion = estadoHabitacion;
+    }
 }

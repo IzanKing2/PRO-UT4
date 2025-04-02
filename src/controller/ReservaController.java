@@ -1,10 +1,10 @@
 package controller;
 
+import model.Reserva;
 import model.Habitacion;
 import model.Cliente;
 import exceptions.ReservaNoDisponibleException;
 import java.time.LocalDateTime;
-import model.Reserva;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,4 +55,19 @@ public class ReservaController {
         reserva.setPrecioTotal(precioTotal);
     }
 
+    public void cancelarReserva(Reserva reserva) throws ReservaNoDisponibleException {
+        // Verificar si la fecha de check-in ya ha comenzado
+        if (reserva.getFechaCkeckIn().isBefore(reserva.getFechaInicioReserva())) {
+            throw new ReservaNoDisponibleException("La reserva no puede ser cancelada porque la fecha de check-in ya ha comenzado.");
+        }
+    
+        // Cambiar el estado de la habitación a DISPONIBLE
+        reserva.getHabitacion().setEstadoHabitacion(Habitacion.EstadoHabitacion.DISPONIBLE);
+    
+        // Decrementar el contador de reservas activas del cliente
+        reserva.getCliente().setReservasActivas(reserva.getCliente().getReservasActivas() - 1);
+    
+        // Mensaje de confirmación
+        System.out.println("Reserva cancelada: ID " + reserva.getIdReserva() + ". La habitación ahora está disponible.");
+    }
 }
