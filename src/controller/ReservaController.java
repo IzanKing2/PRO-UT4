@@ -3,6 +3,7 @@ package controller;
 import model.Cliente;
 import model.Reserva;
 import model.Habitacion;
+import exceptions.FechaNoValidaException;
 import exceptions.ReservaNoDisponibleException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,6 +13,14 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class ReservaController {
+    // Atributos
+    private FechaControler fechaControler; // Controlador de fechas
+
+    // Constructor
+    public ReservaController() {
+        this.fechaControler = new FechaControler(); // Inicializar el controlador de fechas
+    }
+
     public Reserva crearReserva(Habitacion habitacion, Cliente cliente, LocalDateTime fechaCheckIn, LocalDateTime fechaCheckOut) throws ReservaNoDisponibleException {
         // Verificar si el cliente tiene menos de 3 reservas activas
         if (cliente.getReservasActivas() >= 3) {
@@ -19,6 +28,26 @@ public class ReservaController {
         } else {
             // Crear la reserva
             Reserva reserva = new Reserva(habitacion, cliente, fechaCheckIn, fechaCheckOut);
+            // Añadiendo a la reserva a la lista de reservas del cliente
+            cliente.getReservas().add(reserva); // Añadir la reserva a la lista de reservas del cliente
+
+            // Verificar si las fechas son válidas
+            try {
+                fechaControler.esFechaValida(reserva); // Verificar si la fecha de check-in es válida
+            } catch (FechaNoValidaException e) {
+                System.out.println("Error: " + e.getMessage()); // Manejar la excepción de fecha no válida
+            }
+            try {
+            fechaControler.esFechaCheckOutValida(reserva); // Verificar si la fecha de check-out es válida
+            } catch (FechaNoValidaException e) {
+                System.out.println("Error: " + e.getMessage()); // Manejar la excepción de fecha no válida
+            }
+            try {
+                fechaControler.hayConflictoDeFechas(reserva, cliente.getReservas()); // Verificar si hay conflicto de fechas
+            } catch (FechaNoValidaException e) {
+                System.out.println("Error: " + e.getMessage()); // Manejar la excepción de conflicto de fechas
+            }
+
             // Incrementar el contador de reservas activas del cliente
             cliente.setReservasActivas(1);
             // Calcular el precio total de la reserva

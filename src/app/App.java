@@ -8,7 +8,6 @@ import exceptions.ReservaNoDisponibleException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
-import model.Reserva;
 
 
 public class App {
@@ -164,7 +163,7 @@ public class App {
                     LocalDateTime fechaCheckIn = LocalDateTime.parse(fechaCheckInStr + "T00:00:00");        // Añadir la hora para evitar el error de formato
                     LocalDateTime fechaCheckOut = LocalDateTime.parse(fechaCheckOutStr + "T00:00:00");      // Añadir la hora para evitar el error de formato
 
-                    Reserva reserva1 = reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut); // Guardar la reserva en el archivo
+                    reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut); // Guardar la reserva en el archivo
                     break;
                 case 5: // Consultar reservas
                     
