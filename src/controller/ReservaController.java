@@ -112,4 +112,31 @@ public class ReservaController {
         }
         return reservasActivas; // Retornar la lista de reservas activas
     }
+
+    // Método para seleccionar una reserva por su ID
+    public Reserva seleccionarReservaPorId(int idReserva, ArrayList<Reserva> reservas) throws ReservaNoDisponibleException {
+        for (Reserva reserva : reservas) {
+            if (reserva.getIdReserva() == idReserva) {
+                return reserva; // Retornar la reserva encontrada
+            }
+        }
+        throw new ReservaNoDisponibleException("Reserva no encontrada con ID: " + idReserva); // Lanzar excepción si no se encuentra la reserva
+    }
+
+    public void cancelarReserva(Reserva reserva) throws ReservaNoDisponibleException {
+        // Verificar si la fecha de check-in ya ha comenzado
+        if (reserva.getFechaCkeckIn().isBefore(reserva.getFechaInicioReserva())) {
+            throw new ReservaNoDisponibleException("La reserva no puede ser cancelada porque la fecha de check-in ya ha comenzado.");
+        }
+    
+        // Cambiar el estado de la habitación a DISPONIBLE
+        reserva.getHabitacion().setEstadoHabitacion(Habitacion.EstadoHabitacion.DISPONIBLE);
+    
+        // Decrementar el contador de reservas activas del cliente
+        reserva.getCliente().setReservasActivas(-1);
+    
+        // Mensaje de confirmación
+        System.out.println("Reserva cancelada: ID " + reserva.getIdReserva() + ". La habitación ahora está disponible.");
+    }
+
 }

@@ -33,10 +33,6 @@ public class Cliente {
         return this.reservasActivas;
     }
 
-    public void setReservasActivas(int reservasActivas) {
-        this.reservasActivas += reservasActivas;
-    }
-
     public final String getHistorialFile() {
         return this.HISTORIAL_FILE;
     }
@@ -48,5 +44,9 @@ public class Cliente {
     // Setters
     public void setReservas(Reserva reserva) {
         this.reservas.add(reserva); // Añadir reservas a la lista de reservas del cliente
+    }
+
+    public void setReservasActivas(int reservasActivas) {
+        this.reservasActivas += reservasActivas;
     }
 }

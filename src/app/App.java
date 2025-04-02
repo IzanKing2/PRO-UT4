@@ -189,7 +189,24 @@ public class App {
                     consola.getHistorialReservas(dniCliente);             // Mostrar el historial de reservas del cliente
                     break;
                 case 7: // Cancelar reserva
-                    
+                    System.out.println("Introduzca el DNI del cliente: ");
+                    dniCliente = sc.nextLine();
+                    Cliente clienteCancelacion = null; // Inicializar clienteCancelacion
+
+                    try {
+                        clienteCancelacion = cliente.buscarCliente(dniCliente); // Inicializar clienteCancelacion
+                    } catch (exceptions.ClienteNoEncontradoException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    System.out.println("Introduzca el id de la reserva: ");
+                    int idReserva = sc.nextInt();
+                    sc.nextLine(); // Limpiar el buffer del escáner
+                    ArrayList<Reserva> reservaActual = reserva.obtenerReservasActivasDeCliente(clienteCancelacion, clienteCancelacion.getReservas()); // Obtener las reservas activas del cliente
+                    Reserva reservaACancelar = reserva.seleccionarReservaPorId(idReserva, reservaActual); // Seleccionar la reserva por su ID
+                    reserva.cancelarReserva(reservaACancelar); // Cancelar la reserva
+                    clienteCancelacion.getReservas().remove(reservaACancelar); // Eliminar la reserva de la lista de reservas del cliente
+                    System.out.println("Reserva cancelada con éxito.");
                     break;
                 case 8:
                     System.out.println("Saliendo del programa...");
