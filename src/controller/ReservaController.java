@@ -8,6 +8,7 @@ import model.Reserva;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
 
 public class ReservaController {
     
@@ -47,4 +48,11 @@ public class ReservaController {
             System.err.println("Error al guardar la reserva en el archivo: " + e.getMessage());
         }
     }
+
+    public void calcularPrecioTotal(Habitacion habitacion, Reserva reserva) {
+        // Calcular el precio total de la reserva
+        double precioTotal = habitacion.getPrecioHabitacion() * (Duration.between(reserva.getFechaCkeckIn(), reserva.getFechaCheckOut()).toDays());
+        reserva.setPrecioTotal(precioTotal);
+    }
+
 }
