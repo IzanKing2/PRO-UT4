@@ -6,31 +6,58 @@ import model.Habitacion;
 import model.Cliente;
 
 public class Consola {
-    // Método para imprimir un mensaje --------------
+    // Método para imprimir un mensaje
     public static void imprimir(String mensaje) {
         System.out.println(mensaje);
     }
 
-        // Método para mostrar el resumen de las habitaciones
-    public void resumenHabitaciones(ArrayList<Habitacion> listaHabitaciones) {
-        for (Habitacion habitacion : listaHabitaciones) { // Recorremos la lista de habitaciones
+    // Método para mostrar el menú principal
+    public void mostrarMenuPrincipal() {
+        imprimir("______________________________________________");
+        imprimir("BIENVENIDO AL SISTEMA DE RESERVAS DEL HOTEL.");
+        imprimir("*");
+        imprimir("|-1. Mostrar Habitaciones");
+        imprimir("|-2. Mostrar Clientes");
+        imprimir("|-3. Crear Reserva");
+        imprimir("|-4. Consultar Reservas");
+        imprimir("|-5. Modificar Reserva");
+        imprimir("|-6. Cancelar Reserva");
+        imprimir("|-7. Salir");
+        imprimir("______________________________________________");
+    }
+
+    // Método para mostrar el resumen de las habitaciones
+    public void resumenHabitaciones(ArrayList<Habitacion> habitaciones) {
+        imprimir("______________________________________________");
+        imprimir("HABITACIONES:");
+        for (Habitacion habitacion : habitaciones) { // Recorremos la lista de habitaciones
+            // Separo las habitaciones por planta con un salto de línea
+            if (habitacion.getNumeroHabitacion() % 100 == 1) {
+                imprimir(" ");
+                imprimir("Planta " + habitacion.getNumeroHabitacion() / 100 + ":");
+                imprimir("*");
+            }
             imprimir(
-                "Habitación ID: " + habitacion.getNumeroHabitacion() +
+                "|- " + habitacion.getNumeroHabitacion() +
                 " | Tipo: " + habitacion.getTipoHabitacion() +
                 " | Estado: " + habitacion.getEstadoHabitacion() 
             );
         }
+        imprimir("______________________________________________");
     }
 
     // Método para mostrar el resumen de los clientes
-
     public void resumenClientes(ArrayList<Cliente> listaClientes) {
+        imprimir("______________________________________________");
+        imprimir("CLIENTES:");
+        imprimir("*");
         for (Cliente cliente : listaClientes) { // Recorremos la lista de clientes
             imprimir(
-                " | Apellido: " + cliente.getNombreCompleto() +
-                " | DNI: " + cliente.getDNI() +
+                "|- " + cliente.getDNI() +
+                " | Nombre: " + cliente.getNombreCompleto() +
                 " | Reservas Activas: " + cliente.getReservasActivas()  
             );
         }
+        imprimir("______________________________________________");
     }
 }
