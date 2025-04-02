@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservaController {
     // Atributos
@@ -94,5 +96,20 @@ public class ReservaController {
         double precioTotal = habitacion.getPrecioHabitacion() * (Duration.between(reserva.getFechaCkeckIn(), reserva.getFechaCheckOut()).toDays());
         reserva.setPrecioTotal(precioTotal);
     }
+    
+    public List<Reserva> obtenerReservasActivasDeCliente(Cliente cliente, List<Reserva> reservas) {
+        List<Reserva> reservasActivas = new ArrayList<>();
 
+        // Recorrer la lista de reservas
+        for (Reserva reserva : reservas) {
+            // Verificar si la reserva pertenece al cliente y está activa
+            if (reserva.getCliente().equals(cliente) && 
+                reserva.getHabitacion().getEstadoHabitacion() == Habitacion.EstadoHabitacion.RESERVADA) {
+                reservasActivas.add(reserva); // Agregar a la lista de reservas activas
+            }
+        }
+        return reservasActivas; // Retornar la lista de reservas activas
+    }
 }
+
+
