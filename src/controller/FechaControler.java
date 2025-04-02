@@ -1,6 +1,5 @@
 package controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import model.Cliente;
@@ -43,11 +42,6 @@ public class FechaControler {
         }
         return false; // No hay conflictos de fechas
     }
-
-    
-
-
-
 }
 
 
