@@ -1,5 +1,3 @@
-
-
 import controller.ClienteController;
 import model.Cliente;
 import model.Habitacion;
@@ -8,6 +6,7 @@ import view.Consola;
 import controller.ReservaController;
 import exceptions.ReservaNoDisponibleException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class App {
@@ -74,40 +73,74 @@ public class App {
         cliente.añadirCliente(cliente3);
         cliente.añadirCliente(cliente4);
         //_____________________________________________________________________________________________
-        
-        // Reservas
-        reserva.crearReserva(habitacion305, cliente4, null, null);
 
         int opcion;
         do {
             consola.mostrarMenuPrincipal();
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
+            sc.nextLine(); // Limpiar el buffer del escáner
             switch (opcion) {
-                case 1:
+                case 1: // Mostrar habitaciones
                     consola.resumenHabitaciones(habitacion.getHabitaciones());
                     break;
-                case 2:
+                case 2: // Mostrar clientes
                     consola.resumenClientes(cliente.getListaClientes());
                     break;
-                case 3:
-                    // Crear reserva
+                case 3: // Buscar habitación
+                    System.out.println("Por que deseo buscar la habitación?");
+                    System.out.println("1. Por número de habitación");
+                    System.out.println("2. Por tipo de habitación");
+                    System.out.println("3. Por estado de habitación");
+                    System.out.print("Seleccione una opción: ");
+                    int opcionBuscar = sc.nextInt();
+                    sc.nextLine(); // Limpiar el buffer del escáner
+                    switch (opcionBuscar) {
+                        case 1:
+                            System.out.print("Introduzca el número de habitación: ");
+                            int numeroHabitacion = sc.nextInt();
+                            try {
+                                Habitacion habitacionEncontrada = habitacion.buscarHabitacion(numeroHabitacion);
+                                consola.resumenHabitacion(habitacionEncontrada);
+                            } catch (exceptions.HabitacionNoEncontradaException e) {
+                                System.out.println(e.getMessage());
+                            }
+                            break;
+                        case 2:
+                            System.out.print("Introduzca el tipo de habitación (INDIVIDUAL, DOBLE, SUITE): ");
+                            String tipoHabitacionStr = sc.nextLine().toUpperCase();
+                            Habitacion.TipoHabitacion tipoHabitacion = Habitacion.TipoHabitacion.valueOf(tipoHabitacionStr);
+                            ArrayList<Habitacion> habitacionesPorTipo = habitacion.buscarHabitacion(tipoHabitacion);
+                            consola.resumenHabitaciones(habitacionesPorTipo);
+                            break;
+                        case 3:
+                            System.out.print("Introduzca el estado de habitación (DISPONIBLE, RESERVADA, OCUPADA): ");
+                            String estadoHabitacionStr = sc.nextLine().toUpperCase();
+                            Habitacion.EstadoHabitacion estadoHabitacion = Habitacion.EstadoHabitacion.valueOf(estadoHabitacionStr);
+                            ArrayList<Habitacion> habitacionesPorEstado = habitacion.buscarHabitacion(estadoHabitacion);
+                            consola.resumenHabitaciones(habitacionesPorEstado);
+                            break;
+                        default:
+                            System.out.println("Opción no válida. Intente de nuevo.");
+                    }
                     break;
                 case 4:
-                    // Consultar reservas
+                    // Crear reserva
                     break;
                 case 5:
-                    // Modificar reserva
+                    // Consultar reservas
                     break;
                 case 6:
-                    // Cancelar reserva
+                    // Modificar reserva
                     break;
                 case 7:
+                    // Cancelar reserva
+                case 8:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
 }

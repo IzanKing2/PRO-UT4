@@ -18,11 +18,12 @@ public class Consola {
         imprimir("*");
         imprimir("|-1. Mostrar Habitaciones");
         imprimir("|-2. Mostrar Clientes");
-        imprimir("|-3. Crear Reserva");
-        imprimir("|-4. Consultar Reservas");
-        imprimir("|-5. Modificar Reserva");
-        imprimir("|-6. Cancelar Reserva");
-        imprimir("|-7. Salir");
+        imprimir("|-3. Buscar Habitacion");
+        imprimir("|-4. Crear Reserva");
+        imprimir("|-5. Consultar Reservas");
+        imprimir("|-6. Modificar Reserva");
+        imprimir("|-7. Cancelar Reserva");
+        imprimir("|-8. Salir");
         imprimir("______________________________________________");
     }
 
@@ -43,6 +44,21 @@ public class Consola {
                 " | Estado: " + habitacion.getEstadoHabitacion() 
             );
         }
+        imprimir("______________________________________________");
+    }
+
+    // Método para mostrar una habitación por su número
+    public void resumenHabitacion(Habitacion habitacion) {
+        imprimir("______________________________________________");
+        imprimir("HABITACION:");
+        imprimir("*");
+        imprimir(
+            "|- " + habitacion.getNumeroHabitacion() +
+            " | Tipo: " + habitacion.getTipoHabitacion() +
+            " | Estado: " + habitacion.getEstadoHabitacion() +
+            " | Precio: " + habitacion.getPrecioHabitacion() +
+            " | Descripción: " + habitacion.getDescripcion()
+        );
         imprimir("______________________________________________");
     }
 
