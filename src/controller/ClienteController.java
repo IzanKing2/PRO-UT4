@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+
+import exceptions.ClienteNoEncontradoException;
 import model.Cliente;
 
 public class ClienteController {
@@ -18,6 +20,16 @@ public class ClienteController {
     public void añadirCliente(Cliente cliente) {
             // Añadir el cliente a la lista
             listaClientes.add(cliente);
+    }
+
+    // Método para buscar un cliente por su DNI
+    public Cliente buscarCliente(String dni) throws ClienteNoEncontradoException {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getDNI().equalsIgnoreCase(dni)) {
+                return cliente; // Retornar el cliente encontrado
+            }
+        }
+        throw new ClienteNoEncontradoException("Cliente no encontrado: " + dni); // Lanzar excepción si no se encuentra el cliente
     }
 
     // Verificar si el DNI es válido (opcional)

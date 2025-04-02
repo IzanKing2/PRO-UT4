@@ -7,6 +7,7 @@ import controller.ReservaController;
 import exceptions.ReservaNoDisponibleException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 
 public class App {
@@ -95,8 +96,9 @@ public class App {
                     System.out.print("Seleccione una opción: ");
                     int opcionBuscar = sc.nextInt();
                     sc.nextLine(); // Limpiar el buffer del escáner
+
                     switch (opcionBuscar) {
-                        case 1:
+                        case 1: // Buscar por número de habitación
                             System.out.print("Introduzca el número de habitación: ");
                             int numeroHabitacion = sc.nextInt();
                             try {
@@ -106,14 +108,14 @@ public class App {
                                 System.out.println(e.getMessage());
                             }
                             break;
-                        case 2:
+                        case 2: // Buscar por tipo de habitación
                             System.out.print("Introduzca el tipo de habitación (INDIVIDUAL, DOBLE, SUITE): ");
                             String tipoHabitacionStr = sc.nextLine().toUpperCase();
                             Habitacion.TipoHabitacion tipoHabitacion = Habitacion.TipoHabitacion.valueOf(tipoHabitacionStr);
                             ArrayList<Habitacion> habitacionesPorTipo = habitacion.buscarHabitacion(tipoHabitacion);
                             consola.resumenHabitaciones(habitacionesPorTipo);
                             break;
-                        case 3:
+                        case 3: // Buscar por estado de habitación
                             System.out.print("Introduzca el estado de habitación (DISPONIBLE, RESERVADA, OCUPADA): ");
                             String estadoHabitacionStr = sc.nextLine().toUpperCase();
                             Habitacion.EstadoHabitacion estadoHabitacion = Habitacion.EstadoHabitacion.valueOf(estadoHabitacionStr);
@@ -124,8 +126,38 @@ public class App {
                             System.out.println("Opción no válida. Intente de nuevo.");
                     }
                     break;
-                case 4:
-                    // Crear reserva
+
+                case 4: // Crear reserva
+                    System.out.println("Introduzca el número de habitación: ");
+                    Habitacion habitacionDeReserva = null; // Declarar fuera del bloque try
+                    Cliente clienteReserva = null; // Declarar fuera del bloque try
+
+                    int numeroHabitacionReserva = sc.nextInt();
+                    sc.nextLine(); // Limpiar el buffer del escáner
+
+                    try { // Buscar la habitación por su número
+                        habitacionDeReserva = habitacion.buscarHabitacion(numeroHabitacionReserva);
+                    } catch (exceptions.HabitacionNoEncontradaException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    System.out.println("Introduzca el DNI del cliente: ");
+                    String dniCliente = sc.nextLine();
+                    
+                    try { // Buscar el cliente por su DNI
+                        clienteReserva = cliente.buscarCliente(dniCliente);
+                    } catch (exceptions.ClienteNoEncontradoException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    System.out.println("Introduzca la fecha de check-in (YYYY-MM-DD): ");
+                    String fechaCheckInStr = sc.nextLine();
+                    System.out.println("Introduzca la fecha de check-out (YYYY-MM-DD): ");
+                    String fechaCheckOutStr = sc.nextLine();
+                    LocalDateTime fechaCheckIn = LocalDateTime.parse(fechaCheckInStr + "T00:00:00");        // Añadir la hora para evitar el error de formato
+                    LocalDateTime fechaCheckOut = LocalDateTime.parse(fechaCheckOutStr + "T00:00:00");      // Añadir la hora para evitar el error de formato
+
+                    reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut);
                     break;
                 case 5:
                     // Consultar reservas
