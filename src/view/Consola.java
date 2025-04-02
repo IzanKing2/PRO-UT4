@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import model.Habitacion;
 import model.Cliente;
+import model.Reserva;
 
 public class Consola {
     // Atributos
@@ -126,6 +127,22 @@ public class Consola {
             }
         }
 
+        imprimir("______________________________________________");
+    }
+
+    // Método para mostrar las reservas activas de un cliente
+    public void getReservasActivas(ArrayList<Reserva> reservasActivas) {
+        imprimir("______________________________________________");
+        imprimir("RESERVAS ACTIVAS:");
+        imprimir("*");
+        for (Reserva reserva : reservasActivas) { // Recorremos la lista de reservas activas
+            imprimir(
+                "|- ID Reserva: " + reserva.getIdReserva() +
+                " | Habitacion: " + reserva.getHabitacion().getNumeroHabitacion() +
+                " | Cliente: " + reserva.getCliente().getNombreCompleto() +
+                " | Fechas: " + reserva.getFechaCkeckIn() + " - " + reserva.getFechaCheckOut()
+            );
+        }
         imprimir("______________________________________________");
     }
 }

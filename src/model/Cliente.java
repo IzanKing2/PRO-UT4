@@ -44,4 +44,9 @@ public class Cliente {
     public ArrayList<Reserva> getReservas() {
         return this.reservas; // Obtener la lista de reservas del cliente
     }
+
+    // Setters
+    public void setReservas(Reserva reserva) {
+        this.reservas.add(reserva); // Añadir reservas a la lista de reservas del cliente
+    }
 }

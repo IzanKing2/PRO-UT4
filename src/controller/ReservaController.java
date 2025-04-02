@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class ReservaController {
     // Atributos
@@ -28,6 +29,9 @@ public class ReservaController {
         } else {
             // Crear la reserva
             Reserva reserva = new Reserva(habitacion, cliente, fechaCheckIn, fechaCheckOut);
+            // Añadir la reserva a la lista de reservas del cliente
+            habitacion.setEstadoHabitacion(Habitacion.EstadoHabitacion.RESERVADA); // Cambiar el estado de la habitación a reservada
+
             // Añadiendo a la reserva a la lista de reservas del cliente
             cliente.getReservas().add(reserva); // Añadir la reserva a la lista de reservas del cliente
 
@@ -95,4 +99,17 @@ public class ReservaController {
         reserva.setPrecioTotal(precioTotal);
     }
 
+    // Método para obtener las reservas activas de un cliente
+    public ArrayList<Reserva> obtenerReservasActivasDeCliente(Cliente cliente, ArrayList<Reserva> reservas) {
+        ArrayList<Reserva> reservasActivas = new ArrayList<>();
+        // Recorrer la lista de reservas
+        for (Reserva reserva : reservas) {
+            // Verificar si la reserva pertenece al cliente y está activa
+            if (reserva.getCliente().equals(cliente) && 
+                reserva.getHabitacion().getEstadoHabitacion() == Habitacion.EstadoHabitacion.RESERVADA) {
+                reservasActivas.add(reserva); // Agregar a la lista de reservas activas
+            }
+        }
+        return reservasActivas; // Retornar la lista de reservas activas
+    }
 }

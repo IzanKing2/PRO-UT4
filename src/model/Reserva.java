@@ -3,9 +3,11 @@ package model;
 import java.time.LocalDateTime;
 
 public class Reserva {
+    // Atributos estáticos
+    private static int contadorIdReservas = 0; // Contador de reservas (se puede mejorar con un generador de ID único)
 
     // Atributos
-    private int idReserva = 0; // ID de la reserva (se genera automáticamente)
+    private int idReserva; // ID de la reserva (se genera automáticamente)
     private Habitacion habitacion;
     private Cliente cliente;            // Cliente que realiza la reserva
     private LocalDateTime fechaInicioReserva;   
@@ -16,7 +18,7 @@ public class Reserva {
 
 
     public Reserva(Habitacion habitacion, Cliente cliente, LocalDateTime fechaCheckIn, LocalDateTime fechaCheckOut) {
-        idReserva++;
+        this.idReserva = ++contadorIdReservas; // Incrementar el ID de la reserva (se puede mejorar con un generador de ID único)
         this.habitacion = habitacion;
         this.cliente = cliente;
         this.fechaInicioReserva = LocalDateTime.now(); // Fecha y hora de la reserva
@@ -64,5 +66,4 @@ public class Reserva {
     public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
-
 }

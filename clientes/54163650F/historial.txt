@@ -1,0 +1,3 @@
+Historial de reservas del cliente: Izan Carlo Celis Afonso
+ID Reserva: 1 | Fechas: 2025-04-10T00:00 - 2025-04-20T00:00 | Habitacion: 305 | Precio Total: 1500.0
+ID Reserva: 2 | Fechas: 2025-05-02T00:00 - 2025-05-12T00:00 | Habitacion: 204 | Precio Total: 500.0

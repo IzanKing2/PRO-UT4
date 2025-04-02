@@ -8,6 +8,7 @@ import exceptions.ReservaNoDisponibleException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import model.Reserva;
 
 
 public class App {
@@ -166,7 +167,20 @@ public class App {
                     reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut); // Guardar la reserva en el archivo
                     break;
                 case 5: // Consultar reservas
-                    
+                    System.out.print("Introduzca el DNI del cliente: ");
+                    dniCliente = sc.nextLine();
+                    Cliente clienteActual = null; // Inicializar clienteActual
+                    try {
+                        clienteActual = cliente.buscarCliente(dniCliente); // Buscar el cliente por su DNI
+                    } catch (exceptions.ClienteNoEncontradoException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    ArrayList<Reserva> reservasActivas = reserva.obtenerReservasActivasDeCliente(clienteActual, clienteActual.getReservas()); // Obtener las reservas activas del cliente
+                    if (reservasActivas.isEmpty()) {
+                        System.out.println("No hay reservas activas para el cliente con DNI: " + dniCliente);
+                    } else {
+                        consola.getReservasActivas(reservasActivas); // Mostrar las reservas activas del cliente
+                    }
                     break;
                 case 6: // Mostrar historial de reservas
                     System.out.println("Introduzca el DNI del cliente: ");
@@ -174,8 +188,9 @@ public class App {
 
                     consola.getHistorialReservas(dniCliente);             // Mostrar el historial de reservas del cliente
                     break;
-                case 7:
-                    // Cancelar reserva
+                case 7: // Cancelar reserva
+                    
+                    break;
                 case 8:
                     System.out.println("Saliendo del programa...");
                     break;
