@@ -8,6 +8,7 @@ import exceptions.ReservaNoDisponibleException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import model.Reserva;
 
 
 public class App {
@@ -20,7 +21,7 @@ public class App {
         ClienteController cliente = new ClienteController();
         HabitacionController habitacion = new HabitacionController();
         ReservaController reserva = new ReservaController();
-        Consola consola = new Consola();
+        Consola consola = new Consola(cliente);
 
         // Habitaciones _____________________________________________________________________________________________________________
         // Habitaciones planta 1
@@ -82,13 +83,15 @@ public class App {
             opcion = sc.nextInt();
             sc.nextLine(); // Limpiar el buffer del escáner
             switch (opcion) {
-                case 1: // Mostrar habitaciones
+                case 1: // Mostrar habitaciones __________________________________
                     consola.resumenHabitaciones(habitacion.getHabitaciones());
                     break;
-                case 2: // Mostrar clientes
+                //________________________________________________________________
+                case 2: // Mostrar clientes_______________________________________
                     consola.resumenClientes(cliente.getListaClientes());
                     break;
-                case 3: // Buscar habitación
+                //________________________________________________________________
+                case 3: // Buscar habitación ___________________________________________________
                     System.out.println("Por que deseo buscar la habitación?");
                     System.out.println("1. Por número de habitación");
                     System.out.println("2. Por tipo de habitación");
@@ -98,7 +101,7 @@ public class App {
                     sc.nextLine(); // Limpiar el buffer del escáner
 
                     switch (opcionBuscar) {
-                        case 1: // Buscar por número de habitación
+                        case 1: // Buscar por número de habitación _____________________________________________
                             System.out.print("Introduzca el número de habitación: ");
                             int numeroHabitacion = sc.nextInt();
                             try {
@@ -108,25 +111,28 @@ public class App {
                                 System.out.println(e.getMessage());
                             }
                             break;
-                        case 2: // Buscar por tipo de habitación
+                        //______________________________________________________________________________________
+                        case 2: // Buscar por tipo de habitación ____________________________________________________________
                             System.out.print("Introduzca el tipo de habitación (INDIVIDUAL, DOBLE, SUITE): ");
                             String tipoHabitacionStr = sc.nextLine().toUpperCase();
                             Habitacion.TipoHabitacion tipoHabitacion = Habitacion.TipoHabitacion.valueOf(tipoHabitacionStr);
                             ArrayList<Habitacion> habitacionesPorTipo = habitacion.buscarHabitacion(tipoHabitacion);
                             consola.resumenHabitaciones(habitacionesPorTipo);
                             break;
-                        case 3: // Buscar por estado de habitación
+                        //___________________________________________________________________________________________________
+                        case 3: // Buscar por estado de habitación _________________________________________________________________
                             System.out.print("Introduzca el estado de habitación (DISPONIBLE, RESERVADA, OCUPADA): ");
                             String estadoHabitacionStr = sc.nextLine().toUpperCase();
                             Habitacion.EstadoHabitacion estadoHabitacion = Habitacion.EstadoHabitacion.valueOf(estadoHabitacionStr);
                             ArrayList<Habitacion> habitacionesPorEstado = habitacion.buscarHabitacion(estadoHabitacion);
                             consola.resumenHabitaciones(habitacionesPorEstado);
                             break;
+                        //__________________________________________________________________________________________________________
                         default:
                             System.out.println("Opción no válida. Intente de nuevo.");
                     }
                     break;
-
+                //______________________________________________________________________________________________________________
                 case 4: // Crear reserva
                     System.out.println("Introduzca el número de habitación: ");
                     Habitacion habitacionDeReserva = null; // Declarar fuera del bloque try
@@ -154,16 +160,20 @@ public class App {
                     String fechaCheckInStr = sc.nextLine();
                     System.out.println("Introduzca la fecha de check-out (YYYY-MM-DD): ");
                     String fechaCheckOutStr = sc.nextLine();
+                    
                     LocalDateTime fechaCheckIn = LocalDateTime.parse(fechaCheckInStr + "T00:00:00");        // Añadir la hora para evitar el error de formato
                     LocalDateTime fechaCheckOut = LocalDateTime.parse(fechaCheckOutStr + "T00:00:00");      // Añadir la hora para evitar el error de formato
 
-                    reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut);
+                    Reserva reserva1 = reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut); // Guardar la reserva en el archivo
                     break;
-                case 5:
-                    // Consultar reservas
+                case 5: // Consultar reservas
+                    
                     break;
-                case 6:
-                    // Modificar reserva
+                case 6: // Mostrar historial de reservas
+                    System.out.println("Introduzca el DNI del cliente: ");
+                    dniCliente = sc.nextLine();
+
+                    consola.getHistorialReservas(dniCliente);             // Mostrar el historial de reservas del cliente
                     break;
                 case 7:
                     // Cancelar reserva
@@ -174,5 +184,8 @@ public class App {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         } while (opcion != 8);
+
+        sc.close(); // Cerrar el escáner
+        System.out.println("Gracias por usar el sistema de reservas del hotel. ¡Hasta luego!");
     }
 }

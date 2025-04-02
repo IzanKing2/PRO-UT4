@@ -1,8 +1,6 @@
 package controller;
 
 import model.Habitacion;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import exceptions.HabitacionNoEncontradaException;

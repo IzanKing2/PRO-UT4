@@ -1,0 +1,5 @@
+Historial de reservas del cliente: Javier Garcia Castellano
+ID Reserva: 1 | Fechas: 2025-04-12T00:00 - 2025-04-22T00:00 | Habitacion: 204 | Precio Total: 500.0
+Historial de reservas del cliente: Javier Garcia Castellano
+Historial de reservas del cliente: Javier Garcia Castellano
+Historial de reservas del cliente: Javier Garcia Castellano
