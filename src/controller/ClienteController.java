@@ -10,16 +10,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ClienteController {
-    // Atributos
+    // Atributos ___________________________________________________
     private ArrayList<Cliente> listaClientes; // Lista de clientes
+    // ____________________________________________________________
 
-    // Constructor
+    // Constructor ______________________________________
     public ClienteController() {
         // Inicializar la lista de clientes
         this.listaClientes = new ArrayList<Cliente>();
     }
+    // __________________________________________________
 
-    // Método para añadir un cliente a la lista
+    // Método para añadir un cliente a la lista ___________________________________________________________
     public void añadirCliente(Cliente cliente) {
         // Añadir el cliente a la lista
         listaClientes.add(cliente);
@@ -43,8 +45,9 @@ public class ClienteController {
             System.err.println("Error al crear el archivo de historial: " + e.getMessage());
         }
     }
+    // ________________________________________________________________________________________________________________________
 
-    // Método para buscar un cliente por su DNI
+    // Método para buscar un cliente por su DNI ________________________________________________________
     public Cliente buscarCliente(String dni) throws ClienteNoEncontradoException {
         for (Cliente cliente : listaClientes) {
             if (cliente.getDNI().equalsIgnoreCase(dni)) {
@@ -53,9 +56,11 @@ public class ClienteController {
         }
         throw new ClienteNoEncontradoException("Cliente no encontrado: " + dni); // Lanzar excepción si no se encuentra el cliente
     }
+    // ______________________________________________________________________________________________________________________________
 
-    // Getters
+    // Getters ___________________________________________________
     public ArrayList<Cliente> getListaClientes() {
         return this.listaClientes;
     }
+    // ____________________________________________________________
 }

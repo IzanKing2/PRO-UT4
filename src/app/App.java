@@ -17,11 +17,12 @@ public class App {
         // Inicializar el escáner para la entrada del usuario
         Scanner sc = new Scanner(System.in);
 
-        // Instancias de los controladores
+        // Instancias de los controladores _____________________________
         ClienteController cliente = new ClienteController();
         HabitacionController habitacion = new HabitacionController();
         ReservaController reserva = new ReservaController();
         Consola consola = new Consola(cliente);
+        //______________________________________________________________
 
         // Habitaciones _____________________________________________________________________________________________________________
         // Habitaciones planta 1
@@ -133,7 +134,7 @@ public class App {
                     }
                     break;
                 //______________________________________________________________________________________________________________
-                case 4: // Crear reserva
+                case 4: // Crear reserva ________________________________________________________
                     System.out.println("Introduzca el número de habitación: ");
                     Habitacion habitacionDeReserva = null; // Declarar fuera del bloque try
                     Cliente clienteReserva = null; // Declarar fuera del bloque try
@@ -166,7 +167,8 @@ public class App {
 
                     reserva.crearReserva(habitacionDeReserva, clienteReserva, fechaCheckIn, fechaCheckOut); // Guardar la reserva en el archivo
                     break;
-                case 5: // Consultar reservas
+                //_____________________________________________________________________________________________________________________________________________
+                case 5: // Consultar reservas ___________________________________________________
                     System.out.print("Introduzca el DNI del cliente: ");
                     dniCliente = sc.nextLine();
                     Cliente clienteActual = null; // Inicializar clienteActual
@@ -182,13 +184,15 @@ public class App {
                         consola.getReservasActivas(reservasActivas); // Mostrar las reservas activas del cliente
                     }
                     break;
-                case 6: // Mostrar historial de reservas
+                //________________________________________________________________________________________________________________________________________________________________________
+                case 6: // Mostrar historial de reservas _____________________________________________________________________
                     System.out.println("Introduzca el DNI del cliente: ");
                     dniCliente = sc.nextLine();
 
                     consola.getHistorialReservas(dniCliente);             // Mostrar el historial de reservas del cliente
                     break;
-                case 7: // Cancelar reserva
+                //_____________________________________________________________________________________________________________
+                case 7: // Cancelar reserva ___________________________________________________
                     System.out.println("Introduzca el DNI del cliente: ");
                     dniCliente = sc.nextLine();
                     Cliente clienteCancelacion = null; // Inicializar clienteCancelacion
@@ -208,9 +212,11 @@ public class App {
                     clienteCancelacion.getReservas().remove(reservaACancelar); // Eliminar la reserva de la lista de reservas del cliente
                     System.out.println("Reserva cancelada con éxito.");
                     break;
-                case 8:
+                //________________________________________________________________________________________________________________________________________________________________________
+                case 8: // Salir ______________________________________________________
                     System.out.println("Saliendo del programa...");
                     break;
+                //____________________________________________________________________
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
