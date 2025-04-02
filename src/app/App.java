@@ -142,5 +142,6 @@ public class App {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
         } while (opcion != 8);
-    }
+        sc.close(); // Cerrar el escáner al finalizar
+    } 
 }
