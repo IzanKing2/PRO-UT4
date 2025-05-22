@@ -1,4 +1,4 @@
-# DAW
+# Gestion de reservas para un hotel
 
 Este repositorio contiene un sistema de gestión de reservas para un hotel, desarrollado como parte de las actividades del ciclo formativo de Desarrollo de Aplicaciones Web (DAW).
 
